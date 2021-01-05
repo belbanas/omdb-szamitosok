@@ -1,18 +1,20 @@
 import React from 'react';
+import styled from 'styled-components';
 
-export default function MainPage() {
+const SearchBarStyle = styled.div`
+	font-weight: bold;
+	text-align: center;
+`;
+
+const MainPage = (props) => {
 	return (
 		<React.Fragment>
-			<div style={mainStyle}>
-				<h2>Welcome to Project MovieDB!</h2>
-				<p>
-					Our task was to create a website about anything using API and React.
-				</p>
-			</div>
+			<SearchBarStyle>
+				<input type='text' placeholder='Search a movie or Tv Show'></input>
+				teszt
+			</SearchBarStyle>
 		</React.Fragment>
 	);
-}
-
-const mainStyle = {
-	textAlign: 'center',
 };
+
+export default MainPage;
