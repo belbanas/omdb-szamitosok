@@ -4,17 +4,27 @@ import Header from './components/layouts/Header';
 import MainPage from './components/MainPage';
 import WatchList from './components/WatchList';
 import AlreadyWatched from './components/AlreadyWatched';
+import { ThemeProvider, createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+	body {
+		background: lightseagreen;
+	}
+`;
 
 function App() {
 	return (
-		<Router>
-			<div className='App'>
-				<Header />
-				<Route exact path='/' component={MainPage} />
-				<Route exact path='/watchlist' component={WatchList} />
-				<Route exact path='/seen' component={AlreadyWatched} />
-			</div>
-		</Router>
+		<ThemeProvider theme={GlobalStyle}>
+			<GlobalStyle />
+			<Router>
+				<div className='App'>
+					<Header />
+					<Route exact path='/' component={MainPage} />
+					<Route exact path='/watchlist' component={WatchList} />
+					<Route exact path='/seen' component={AlreadyWatched} />
+				</div>
+			</Router>
+		</ThemeProvider>
 	);
 }
 
