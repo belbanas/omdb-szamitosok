@@ -3,21 +3,14 @@ import styled from 'styled-components';
 import axios from 'axios';
 import Item from './Item';
 
-// const WrapStyle = styled.div`
-// 	width: 30%;
-// 	position: absolute;
-// 	top: 50%;
-// 	left: 50%;
-// 	transform: translate(-50%, -50%);
-// `;
-
-const InputStyle = styled.input`
+const SearchField = styled.input`
 	width: 500px;
 	border: 2px solid black;
 	height: 50px;
 	border-radius: 5px 0 0 5px;
 	outline: none;
 	font-size: 1.5rem;
+	display: block;
 `;
 
 const Place = styled.div`
@@ -27,17 +20,11 @@ const Place = styled.div`
 	padding: 10px;
 `;
 
-// const SearchButton = styled.button`
-// 	width: 50px;
-// 	height: 50px;
-// 	border: 1px solid black;
-// 	background: #00b4cc;
-// 	text-align: center;
-// 	color: #fff;
-// 	border-radius: 0 5px 5px 0;
-// 	cursor: pointer;
-// 	font-size: 20px;
-// `;
+const MovieCards = styled.div`
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+`;
 
 const MainPage = () => {
 	const [results, setResults] = useState([]);
@@ -74,34 +61,20 @@ const MainPage = () => {
 		setValue(e.target.value);
 	};
 
-	const handleClick = (e) => {
-		e.preventDefault();
-		console.log(value);
-	};
-
 	return (
 		<React.Fragment>
-			<form>
-				<Place>
-					<InputStyle
+			<Place>
+				<form>
+					<SearchField
 						placeholder='Search'
 						name='search'
 						type='text'
 						placeholder='Start typing'
 						onChange={handleChange}
-					></InputStyle>
-				</Place>
-				{getResults()}
-
-				{/* <SearchButton>
-							<img
-								src='https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Magnifying_glass_icon.svg/1200px-Magnifying_glass_icon.svg.png'
-								height='33'
-								width='32'
-								alt=''
-							></img>
-						</SearchButton> */}
-			</form>
+					></SearchField>
+				</form>
+			</Place>
+			<MovieCards>{getResults()}</MovieCards>
 		</React.Fragment>
 	);
 };

@@ -9,6 +9,7 @@ import { ThemeProvider, createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
 	body {
 		background: lightseagreen;
+		margin: auto 20rem auto 20rem;
 	}
 `;
 
