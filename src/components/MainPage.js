@@ -52,6 +52,8 @@ const MainPage = () => {
                 if (response.data.Response === "True") {
                     console.log(response.data.Search);
                     setResults(response.data.Search);
+                } else {
+                    setResults([]);
                 }
             });
     }, [value, page]);
