@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
+import Flippy, { FrontSide, BackSide } from 'react-flippy';
 
 const MovieCard = styled.div`
 	color: black;
-	margin: 2rem;
 	padding: 5px 5px;
 	border: 2px solid;
 	background: lightyellow;
@@ -23,11 +23,18 @@ const Test = styled.p`
 
 const Item = (props) => {
 	return (
-		<MovieCard>
-			<Poster src={props.poster}></Poster>
-			{props.title}
-			<Test>{props.year}</Test>
-		</MovieCard>
+		<React.Fragment>
+			<Flippy flipOnHover={false} flipOnClick={true} flipDirection='horizontal'>
+				<FrontSide>
+					<MovieCard>
+						<Poster src={props.poster}></Poster>
+						{props.title}
+						<Test>{props.year}</Test>
+					</MovieCard>
+				</FrontSide>
+				<BackSide>ROCKS</BackSide>
+			</Flippy>
+		</React.Fragment>
 	);
 };
 
