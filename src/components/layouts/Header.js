@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 const HeaderHeader = styled.header`
 	text-align: center;
-	margin: auto 20rem auto 20rem;
 `;
 
 const Title = styled.div`
