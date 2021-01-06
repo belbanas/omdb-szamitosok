@@ -50,6 +50,7 @@ const MainPage = () => {
 					year={item.Year}
 					type={item.Type}
 					poster={item.Poster}
+					imdbid={item.imdbID}
 				/>
 			));
 		} else {
