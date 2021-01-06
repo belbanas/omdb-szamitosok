@@ -81,13 +81,22 @@ const MainPage = () => {
     const nextClick = (e) => {
         let nextPage = page + 1;
         setPage(nextPage);
+        scrollToTop();
     };
 
     const prevClick = (e) => {
         if (page > 1) {
             let prevPage = page - 1;
             setPage(prevPage);
+            scrollToTop();
         }
+    };
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
     };
 
     return (
