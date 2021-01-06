@@ -8,13 +8,22 @@ const NavbarDiv = styled.div`
 	padding: 1rem;
 `;
 
+const Item = styled.b`
+	margin: 8px;
+`;
+
 const Navbar = (props) => {
 	return (
 		<NavbarDiv className='navbar'>
-			<Link to='/'>Home</Link>##
-			<Link to='/watchlist'>Watch List</Link>
-			##
-			<Link to='/seen'>Already Watched</Link>
+			<Item>
+				<Link to='/'>Home</Link>
+			</Item>
+			<Item>
+				<Link to='/watchlist'>Watch List</Link>
+			</Item>
+			<Item>
+				<Link to='/seen'>Already Watched</Link>
+			</Item>
 		</NavbarDiv>
 	);
 };
