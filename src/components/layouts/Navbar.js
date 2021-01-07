@@ -11,8 +11,14 @@ const NavbarDiv = styled.div`
 `;
 
 const Item = styled.b`
+    text-decoration: none;
     margin: 8px;
 `;
+
+const linkStyle = {
+    color: "black",
+    textDecoration: "none"
+}
 
 const Navbar = (props) => {
     const [movies, setMovies] = useContext(MovieContext);
@@ -20,13 +26,15 @@ const Navbar = (props) => {
     return (
         <NavbarDiv className="navbar">
             <Item>
-                <Link to="/">Home</Link>
+                <Link to="/" style={linkStyle}>Home</Link>
             </Item>
             <Item>
-                <Link to="/watchlist">Watch List: {movies.watchlist.length}</Link>
+                <Link to="/watchlist" style={linkStyle}>
+                    Watch List: {movies.watchlist.length}
+                </Link>
             </Item>
             <Item>
-                <Link to="/seen">Already Watched</Link>
+                Already Watched: {movies.alreadyWatched.length}{" "}
             </Item>
         </NavbarDiv>
     );
