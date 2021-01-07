@@ -85,10 +85,8 @@ const Item = (props) => {
 	const grayScaled = () => {
 		if (movies.alreadyWatched.includes(props.title)) {
 			setGrayscale(true);
-			console.log('zsamogeci');
 		} else {
 			setGrayscale(false);
-			console.log('dilogeci');
 		}
 	};
 

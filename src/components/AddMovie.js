@@ -14,18 +14,17 @@ const AddMovie = (props) => {
 		if (movies.watchlist.length > 0) {
 			for (let movie of movies.watchlist) {
 				if (movie.Title === props.movie.Title) {
-					alert('Already kaki');
+					alert('Already added to watchlist!');
 				} else {
 					setMovies({
-						watchlist: [...movies.watchlist, props.watchlist],
+						watchlist: [...movies.watchlist, props.movie],
 						alreadyWatched: [...movies.alreadyWatched],
 					});
-					console.log('kakkanat');
 				}
 			}
 		} else {
 			setMovies({
-				watchlist: [...movies.watchlist, props.watchlist],
+				watchlist: [...movies.watchlist, props.movie],
 				alreadyWatched: [...movies.alreadyWatched],
 			});
 		}
@@ -38,15 +37,28 @@ const AddMovie = (props) => {
 				alreadyWatched: [...movies.alreadyWatched, props.movie.Title],
 			});
 		} else {
-			alert('Already added!');
+            let filteredArray = movies.alreadyWatched.filter(title => title !== props.movie.Title);
+            setMovies({
+                watchlist: [...movies.watchlist],
+				alreadyWatched: filteredArray,
+            })
 		}
-	};
+    };
+    
+    const removeFromWatchlist = () => {
+        let filteredArray = movies.watchlist.filter(movie => movie.Title !== props.movie.Title);
+        setMovies({
+            watchlist: filteredArray,
+            alreadyWatched: [...movies.alreadyWatched]
+        })
+    }
 
 	return (
 		<React.Fragment>
 			<Button type='submit' onClick={addMovie}>
 				Add to Watchlist
 			</Button>
+            <Button onClick={removeFromWatchlist}>Remove from watchlist</Button>
 
 			<Button type='submit' onClick={addMovieTwo}>
 				Seen
