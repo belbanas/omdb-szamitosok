@@ -26,7 +26,6 @@ const Register = (params) => {
 				name: userName,
 				email: userEmail,
 				password: userPassword,
-				_token: '{{ csrf_token() }}',
 			})
 
 			.then((response) => {
@@ -37,9 +36,15 @@ const Register = (params) => {
 	return (
 		<div>
 			<form onSubmit={handleRegistration}>
-				<input type='email' onChange={handleEmailChange} />
-				<input type='text' onChange={handleNameChange} />
-				<input type='password' onChange={handlePasswordChange} />
+				<label for='name'>Username</label>
+				<input type='text' id='name' onChange={handleNameChange} />
+				<br />
+				<label for='email'>Email</label>
+				<input type='email' id='email' onChange={handleEmailChange} />
+				<br />
+				<label for='password'>Password</label>
+				<input type='password' id='password' onChange={handlePasswordChange} />
+				<br />
 				<button type='submit'>Submit</button>
 			</form>
 		</div>
