@@ -20,16 +20,19 @@ const Register = (params) => {
 
 	const handleRegistration = (event) => {
 		event.preventDefault();
-		alert(userEmail + userName + userPassword);
+		// alert(userEmail + userName + userPassword);
 		axios
 			.post('http://127.0.0.1:8000/api/registration', {
 				name: userName,
 				email: userEmail,
 				password: userPassword,
 			})
-
 			.then((response) => {
 				console.log(response);
+				window.location.href = '/';
+			})
+			.catch(function (error) {
+				alert(error)
 			});
 	};
 

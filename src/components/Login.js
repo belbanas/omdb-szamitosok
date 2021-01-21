@@ -15,18 +15,20 @@ const Login = (params) => {
 
 	const handleLogin = (event) => {
 		event.preventDefault();
-		alert(userEmail + userPassword);
+		// alert(userEmail + userPassword);
 		axios
 			.post('http://127.0.0.1:8000/api/login', {
 				email: userEmail,
 				password: userPassword,
 			})
-
 			.then((response) => {
 				console.log(response);
 				sessionStorage.setItem('token', response.data.token);
 				sessionStorage.setItem('username', response.data.user.name);
 				window.location.href = '/';
+			})
+			.catch(function (error) {
+				alert(error)
 			});
 	};
 

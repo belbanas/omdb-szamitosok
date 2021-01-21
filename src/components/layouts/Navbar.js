@@ -16,6 +16,12 @@ const Item = styled.b`
 	margin: 8px;
 `;
 
+const Item2 = styled.b`
+	text-decoration: none;
+	margin: 8px;
+	color: red;
+`;
+
 const linkStyle = {
 	color: 'black',
 	textDecoration: 'none',
@@ -36,26 +42,27 @@ const Navbar = (props) => {
 				<Link to='/' style={linkStyle}>
 					Home
 				</Link>
-			</Item>
+			</Item>{" | "}
 			<Item>
 				<Link to='/watchlist' style={linkStyle}>
-					Watch List: {movies.watchlist.length}
+					Watch List
+					{/* : {movies.watchlist.length} */}
 				</Link>
-			</Item>
-			<Item>Already Watched: {movies.alreadyWatched.length} </Item>
+			</Item>{" | "}
+			{/* <Item>Already Watched: {movies.alreadyWatched.length} </Item> */}
 			<Item>
 				<Link to='/register' style={linkStyle}>
 					Registration
 				</Link>
-			</Item>
+			</Item>{" | "}
 			<Item>
 				<Link to='/login' style={linkStyle}>
 					Login
 				</Link>
-			</Item>
+			</Item>{" | "}
 			<Item>
 				<Logout />
-			</Item>
+			</Item>{" | "}
 			<Item>{loginText}</Item>
 		</NavbarDiv>
 	);

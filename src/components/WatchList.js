@@ -1,7 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { MovieContext } from './MovieContext';
 import Item from './Item';
 import styled from 'styled-components';
+import axios from 'axios';
 
 const MovieCards = styled.div`
 	display: flex;
@@ -11,17 +12,28 @@ const MovieCards = styled.div`
 
 const Movies = () => {
 	const [movies, setMovies] = useContext(MovieContext);
+	const [watchlist, setWatchlist] = useState([]);
+
+	
+	useEffect(() => {
+		let config = {
+			headers: {
+				Authorization: 'Bearer ' + sessionStorage.getItem('token')
+			}
+		}
+		axios.get('http://127.0.0.1:8000/api/watchlist', config)
+		.then((response) => {
+			console.log(response);
+			setWatchlist(response.data.watchlist)
+		})
+	}, [])
 
 	const getWatchlist = () => {
-		if (movies.watchlist.length >= 0) {
-			return movies.watchlist.map((item) => (
+		if (watchlist.length >= 0) {
+			return watchlist.map((item) => (
 				<Item
-					key={item.imdbID}
-					title={item.Title}
-					year={item.Year}
-					type={item.Type}
-					poster={item.Poster}
-					imdbid={item.imdbID}
+					key={item.id}
+					imdbid={item.imdb_id}
 				/>
 			));
 		} else {

@@ -60,10 +60,10 @@ const MainPage = () => {
 			return results.map((item) => (
 				<Item
 					key={item.imdbID}
-					title={item.Title}
-					year={item.Year}
-					type={item.Type}
-					poster={item.Poster}
+					// title={item.Title}
+					// year={item.Year}
+					// type={item.Type}
+					// poster={item.Poster}
 					imdbid={item.imdbID}
 					item={item}
 				/>

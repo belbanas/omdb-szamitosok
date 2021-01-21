@@ -96,10 +96,10 @@ const Item = (props) => {
 				<FrontSide>
 					<MovieCard>
 						<GrayScale style={grayScaleStyle()}>
-							<Poster src={props.poster}></Poster>
+							<Poster src={details.Poster}></Poster>
 						</GrayScale>
-						<Title>{props.title}</Title>
-						<p>{props.year}</p>
+						<Title>{details.Title}</Title>
+						<p>{details.Year}</p>
 					</MovieCard>
 				</FrontSide>
 
