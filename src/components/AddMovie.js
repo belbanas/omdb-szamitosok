@@ -37,28 +37,32 @@ const AddMovie = (props) => {
 				alreadyWatched: [...movies.alreadyWatched, props.movie.Title],
 			});
 		} else {
-            let filteredArray = movies.alreadyWatched.filter(title => title !== props.movie.Title);
-            setMovies({
-                watchlist: [...movies.watchlist],
+			let filteredArray = movies.alreadyWatched.filter(
+				(title) => title !== props.movie.Title
+			);
+			setMovies({
+				watchlist: [...movies.watchlist],
 				alreadyWatched: filteredArray,
-            })
+			});
 		}
-    };
-    
-    const removeFromWatchlist = () => {
-        let filteredArray = movies.watchlist.filter(movie => movie.Title !== props.movie.Title);
-        setMovies({
-            watchlist: filteredArray,
-            alreadyWatched: [...movies.alreadyWatched]
-        })
-    }
+	};
+
+	const removeFromWatchlist = () => {
+		let filteredArray = movies.watchlist.filter(
+			(movie) => movie.Title !== props.movie.Title
+		);
+		setMovies({
+			watchlist: filteredArray,
+			alreadyWatched: [...movies.alreadyWatched],
+		});
+	};
 
 	return (
 		<React.Fragment>
 			<Button type='submit' onClick={addMovie}>
 				Add to Watchlist
 			</Button>
-            <Button onClick={removeFromWatchlist}>Remove from watchlist</Button>
+			<Button onClick={removeFromWatchlist}>Remove from watchlist</Button>
 
 			<Button type='submit' onClick={addMovieTwo}>
 				Seen
