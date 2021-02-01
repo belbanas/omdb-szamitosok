@@ -25,23 +25,6 @@ const AddMovie = (props) => {
         axios
             .post("http://127.0.0.1:8000/api/watchlist", data, config)
             .then((response) => console.log(response));
-        // if (movies.watchlist.length > 0) {
-        // 	for (let movie of movies.watchlist) {
-        // 		if (movie.Title === props.movie.Title) {
-        // 			alert('Already added to watchlist!');
-        // 		} else {
-        // 			setMovies({
-        // 				watchlist: [...movies.watchlist, props.movie],
-        // 				alreadyWatched: [...movies.alreadyWatched],
-        // 			});
-        // 		}
-        // 	}
-        // } else {
-        // 	setMovies({
-        // 		watchlist: [...movies.watchlist, props.movie],
-        // 		alreadyWatched: [...movies.alreadyWatched],
-        // 	});
-        // }
     };
 
     const addMovieTwo = () => {
@@ -69,31 +52,26 @@ const AddMovie = (props) => {
                 alert(response.data.message);
                 window.location.href = "/watchlist";
             });
-        // let filteredArray = movies.watchlist.filter(
-        //     (movie) => movie.Title !== props.movie.Title
-        // );
-        // setMovies({
-        //     watchlist: filteredArray,
-        //     alreadyWatched: [...movies.alreadyWatched],
-        // });
     };
 
-	if(sessionStorage.getItem('token')) {
-		return (
-			<React.Fragment>
-				<Button type="submit" onClick={addMovie}>
-					Add to Watchlist
-				</Button>
-				<Button onClick={removeFromWatchlist}>Remove from watchlist</Button>
-	
-				{/* <Button type="submit" onClick={addMovieTwo}>
+    if (sessionStorage.getItem("token")) {
+        return (
+            <React.Fragment>
+                <Button type="submit" onClick={addMovie}>
+                    Add to Watchlist
+                </Button>
+                <Button onClick={removeFromWatchlist}>
+                    Remove from watchlist
+                </Button>
+
+                {/* <Button type="submit" onClick={addMovieTwo}>
 					Seen
 				</Button> */}
-			</React.Fragment>
-		);
-	} else {
-		return null;
-	}
+            </React.Fragment>
+        );
+    } else {
+        return null;
+    }
 };
 
 export default AddMovie;
