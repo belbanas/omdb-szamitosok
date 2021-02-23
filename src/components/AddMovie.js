@@ -27,22 +27,22 @@ const AddMovie = (props) => {
             .then((response) => console.log(response));
     };
 
-    const addMovieTwo = () => {
-        if (!movies.alreadyWatched.includes(props.movie.Title)) {
-            setMovies({
-                watchlist: [...movies.watchlist],
-                alreadyWatched: [...movies.alreadyWatched, props.movie.Title],
-            });
-        } else {
-            let filteredArray = movies.alreadyWatched.filter(
-                (title) => title !== props.movie.Title
-            );
-            setMovies({
-                watchlist: [...movies.watchlist],
-                alreadyWatched: filteredArray,
-            });
-        }
-    };
+    // const addMovieTwo = () => {
+    //     if (!movies.alreadyWatched.includes(props.movie.Title)) {
+    //         setMovies({
+    //             watchlist: [...movies.watchlist],
+    //             alreadyWatched: [...movies.alreadyWatched, props.movie.Title],
+    //         });
+    //     } else {
+    //         let filteredArray = movies.alreadyWatched.filter(
+    //             (title) => title !== props.movie.Title
+    //         );
+    //         setMovies({
+    //             watchlist: [...movies.watchlist],
+    //             alreadyWatched: filteredArray,
+    //         });
+    //     }
+    // };
 
     const removeFromWatchlist = () => {
         axios
