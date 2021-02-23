@@ -31,10 +31,32 @@ const Navbar = (props) => {
     const [movies, setMovies] = useContext(MovieContext);
 
     let loginText = "You are not logged in!";
+    let userHandle = (
+        <React.Fragment>
+            <Item>
+                <Link to="/register" style={linkStyle}>
+                    Registration
+                </Link>
+            </Item>
+            {" | "}
+            <Item>
+                <Link to="/login" style={linkStyle}>
+                    Login
+                </Link>
+            </Item>
+        </React.Fragment>
+    );
 
     if (sessionStorage.getItem("token")) {
         loginText =
             "You are logged in as: " + sessionStorage.getItem("username");
+        userHandle = (
+            <React.Fragment>
+                <Item>
+                    <Logout />
+                </Item>
+            </React.Fragment>
+        );
     }
 
     return (
@@ -52,22 +74,7 @@ const Navbar = (props) => {
                 </Link>
             </Item>
             {" | "}
-            {/* <Item>Already Watched: {movies.alreadyWatched.length} </Item> */}
-            <Item>
-                <Link to="/register" style={linkStyle}>
-                    Registration
-                </Link>
-            </Item>
-            {" | "}
-            <Item>
-                <Link to="/login" style={linkStyle}>
-                    Login
-                </Link>
-            </Item>
-            {" | "}
-            <Item>
-                <Logout />
-            </Item>
+            {userHandle}
             {" | "}
             <Item>{loginText}</Item>
         </NavbarDiv>
