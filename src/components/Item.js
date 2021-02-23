@@ -115,6 +115,8 @@ const Item = (props) => {
                             <Detail>{details.Runtime}</Detail>
                             <Detail>{details.Genre}</Detail>
                             <Detail>{details.Plot}</Detail>
+                            <Detail>Director: {details.Director}</Detail>
+                            <Detail>Starring: {details.Actors}</Detail>
                             <Detail>
                                 <AddMovie movie={details} />
                             </Detail>
