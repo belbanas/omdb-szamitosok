@@ -86,6 +86,9 @@ const HeaderNavbar = (props) => {
 				<Nav.Link href='/watchlist'>Watch List</Nav.Link>
 				<Nav.Link href='/login'>LogIn</Nav.Link>
 				<Nav.Link href='/register'>Register</Nav.Link>
+				<Nav.Link href='/'>
+					<Logout />
+				</Nav.Link>
 				<Item>
 					<span style={{ color: 'white' }}>{loginText}</span>
 				</Item>
