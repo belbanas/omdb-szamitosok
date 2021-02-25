@@ -11,7 +11,7 @@ import Register from './components/Register';
 
 const GlobalStyle = createGlobalStyle`
 	body {
-		background: lightseagreen;
+		background: lightsteelblue;
 		margin: auto 20rem auto 20rem;
 	}
 `;
