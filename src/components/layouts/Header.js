@@ -51,6 +51,12 @@ const Title = styled.div`
 		border-radius: calc(2 * var(--border-width));
 		animation: moveGradient 4s alternate infinite;
 	}
+
+	@keyframes moveGradient {
+		50% {
+			background-position: 100% 50%;
+		}
+	}
 `;
 
 const Header = (props) => {
