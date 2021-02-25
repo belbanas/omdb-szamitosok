@@ -18,7 +18,7 @@ const Title = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 1205px;
+	width: 100%;
 	height: 200px;
 	font-family: Lato, sans-serif;
 	font-size: 2.5rem;

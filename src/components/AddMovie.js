@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import ReviewList from './ReviewList';
 
 const Button = styled.button`
 	padding: 0.5rem;
@@ -135,7 +136,9 @@ const AddMovie = (props) => {
 					<Modal.Header closeButton>
 						<Modal.Title>Reviews</Modal.Title>
 					</Modal.Header>
-					<Modal.Body>Zsamo</Modal.Body>
+					<Modal.Body>
+						<ReviewList imdb_id={props.movie.imdbID} />
+					</Modal.Body>
 				</Modal>
 			</React.Fragment>
 		);
