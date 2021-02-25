@@ -48,8 +48,20 @@ const AddMovie = (props) => {
 
 	//this is for modal
 	const [show, setShow] = useState(false);
-	const handleClose = () => setShow(false);
-	const handleShow = () => setShow(true);
+	const [show2, setShow2] = useState(false);
+	const handleClose = () => {
+		setShow(false);
+		setShow2(false);
+		props.changeCard();
+	};
+	const handleShow = () => {
+		setShow(true);
+		props.changeCard();
+	};
+	const handleShow2 = () => {
+		setShow2(true);
+		props.changeCard();
+	};
 	//
 
 	let config = {
@@ -67,23 +79,6 @@ const AddMovie = (props) => {
 			.post('http://127.0.0.1:8000/api/watchlist', data, config)
 			.then((response) => console.log(response));
 	};
-
-	// const addMovieTwo = () => {
-	//     if (!movies.alreadyWatched.includes(props.movie.Title)) {
-	//         setMovies({
-	//             watchlist: [...movies.watchlist],
-	//             alreadyWatched: [...movies.alreadyWatched, props.movie.Title],
-	//         });
-	//     } else {
-	//         let filteredArray = movies.alreadyWatched.filter(
-	//             (title) => title !== props.movie.Title
-	//         );
-	//         setMovies({
-	//             watchlist: [...movies.watchlist],
-	//             alreadyWatched: filteredArray,
-	//         });
-	//     }
-	// };
 
 	const removeFromWatchlist = () => {
 		axios
@@ -112,6 +107,7 @@ const AddMovie = (props) => {
 				<Button variant='primary' onClick={handleShow}>
 					Write a review
 				</Button>
+				<Button onClick={handleShow2}>Reviews</Button>
 				<Modal show={show} onHide={handleClose}>
 					<Modal.Header closeButton>
 						<Modal.Title>Write a review!</Modal.Title>
@@ -133,6 +129,13 @@ const AddMovie = (props) => {
 							</Button>
 						</form>
 					</Modal.Body>
+				</Modal>
+
+				<Modal show={show2} onHide={handleClose}>
+					<Modal.Header closeButton>
+						<Modal.Title>Reviews</Modal.Title>
+					</Modal.Header>
+					<Modal.Body>Zsamo</Modal.Body>
 				</Modal>
 			</React.Fragment>
 		);

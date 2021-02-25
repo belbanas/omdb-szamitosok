@@ -39,7 +39,7 @@ const CardDetails = styled.div`
 const Title = styled.h3``;
 
 const Detail = styled.p`
-	padding: 0.8rem;
+	padding: 0.01rem;
 `;
 
 const Button = styled.button`
@@ -96,9 +96,23 @@ const Item = (props) => {
 		}
 	};
 
+	const [cardFlip, setCardFlip] = useState(true);
+
+	const changeCardFlip = () => {
+		if (cardFlip) {
+			setCardFlip(false);
+		} else {
+			setCardFlip(true);
+		}
+	};
+
 	return (
 		<React.Fragment>
-			<Flippy flipOnHover={false} flipOnClick={true} flipDirection='horizontal'>
+			<Flippy
+				flipOnHover={false}
+				flipOnClick={cardFlip}
+				flipDirection='horizontal'
+			>
 				<FrontSide>
 					<MovieCard>
 						<GrayScale style={grayScaleStyle()}>
@@ -119,10 +133,10 @@ const Item = (props) => {
 							<Detail>{details.Runtime}</Detail>
 							<Detail>{details.Genre}</Detail>
 							<Detail>{details.Plot}</Detail>
-              <Detail>Director: {details.Director}</Detail>
-              <Detail>Starring: {details.Actors}</Detail>
+							<Detail>Director: {details.Director}</Detail>
+							<Detail>Starring: {details.Actors}</Detail>
 							<Detail>
-								<AddMovie movie={details} />
+								<AddMovie changeCard={changeCardFlip} movie={details} />
 							</Detail>
 						</CardDetails>
 					</MovieCard>

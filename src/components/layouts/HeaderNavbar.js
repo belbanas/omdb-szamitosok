@@ -13,7 +13,7 @@ const NavbarDiv = styled.div`
 	padding: 1rem;
 `;
 
-const Item = styled.b`
+const Item = styled.a`
 	text-decoration: none;
 	margin: 8px;
 `;
@@ -25,7 +25,7 @@ const Item2 = styled.b`
 `;
 
 const linkStyle = {
-	color: 'black',
+	color: 'white',
 	textDecoration: 'none',
 };
 
@@ -36,14 +36,13 @@ const HeaderNavbar = (props) => {
 	let userHandle = (
 		<React.Fragment>
 			<Item>
-				<Link to='/register' style={linkStyle}>
-					Registration
-				</Link>
-			</Item>
-			{' | '}
-			<Item>
 				<Link to='/login' style={linkStyle}>
 					Login
+				</Link>
+			</Item>
+			<Item>
+				<Link to='/register' style={linkStyle}>
+					Registration
 				</Link>
 			</Item>
 		</React.Fragment>
@@ -54,6 +53,11 @@ const HeaderNavbar = (props) => {
 		userHandle = (
 			<React.Fragment>
 				<Item>
+					<Link to='/watchlist' style={linkStyle}>
+						Watchlist
+					</Link>{' '}
+				</Item>
+				<Item>
 					<Logout />
 				</Item>
 			</React.Fragment>
@@ -61,34 +65,11 @@ const HeaderNavbar = (props) => {
 	}
 
 	return (
-		// <NavbarDiv className='navbar'>
-		// 	<Item>
-		// 		<Link to='/' style={linkStyle}>
-		// 			Home
-		// 		</Link>
-		// 	</Item>
-		// 	{' | '}
-		// 	<Item>
-		// 		<Link to='/watchlist' style={linkStyle}>
-		// 			Watch List
-		// 			{/* : {movies.watchlist.length} */}
-		// 		</Link>
-		// 	</Item>
-		// 	{' | '}
-		// 	{userHandle}
-		// 	{' | '}
-		// 	<Item>{loginText}</Item>
-		// </NavbarDiv>
 		<Navbar bg='dark' variant='dark'>
-			<Navbar.Brand href='/'>OMDB</Navbar.Brand>
+			<Navbar.Brand href='/'>Home</Navbar.Brand>
 			<Nav className='mr-auto'>
-				<Nav.Link href='/'>Home</Nav.Link>
-				<Nav.Link href='/watchlist'>Watch List</Nav.Link>
-				<Nav.Link href='/login'>LogIn</Nav.Link>
-				<Nav.Link href='/register'>Register</Nav.Link>
-				<Nav.Link href='/'>
-					<Logout />
-				</Nav.Link>
+				{userHandle}
+
 				<Item>
 					<span style={{ color: 'white' }}>{loginText}</span>
 				</Item>
