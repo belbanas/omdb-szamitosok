@@ -43,15 +43,15 @@ const MainPage = () => {
     useEffect(() => {
         axios
             .get(
-                "http://www.omdbapi.com/?apikey=530b6ee1&s=" +
+                "http://localhost:8000/api/search?value=" +
                     value +
                     "&page=" +
                     page
             )
-            .then((response) => {
-                if (response.data.Response === "True") {
-                    console.log(response.data.Search);
-                    setResults(response.data.Search);
+            .then((response) => JSON.parse(response.data))
+            .then((resp) => {
+                if (resp.Response === "True") {
+                    setResults(resp.Search);
                 } else {
                     setResults([]);
                 }
