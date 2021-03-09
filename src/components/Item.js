@@ -56,6 +56,15 @@ const Score = styled.p`
 	font-weight: bold;
 `;
 
+const Score2 = styled.p`
+	padding: 0.8rem;
+	border: 2px solid;
+	border-radius: 5rem;
+	width: 3.5rem;
+	background: lightblue;
+	font-weight: bold;
+`;
+
 const Scores = styled.div`
 	float: left;
 	display: flex;
@@ -67,6 +76,7 @@ const Item = (props) => {
 	const [details, setDetails] = useState({});
 	const [movies, setMovies] = useContext(MovieContext);
 	const [grayscale, setGrayscale] = useState(false);
+	const [rating, setRating] = useState([]);
 
 	useEffect(() => {
 		axios
@@ -75,7 +85,24 @@ const Item = (props) => {
 				setDetails(response.data);
 				grayScaled();
 			});
+
+		axios
+			.get(
+				'http://127.0.0.1:8000/api/user-review?imdb_id=' + props.imdbid,
+				config
+			)
+			.then((response) => {
+				setRating(response.data.reviews);
+				console.log(response.data.reviews[0]);
+			});
 	}, [props.imdbid, movies.alreadyWatched]);
+
+	let config = {
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+			Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+		},
+	};
 
 	const grayScaleStyle = () => {
 		if (grayscale) {
@@ -106,6 +133,16 @@ const Item = (props) => {
 		}
 	};
 
+	const setRatingData = () => {
+		if (sessionStorage.getItem('token')) {
+			if (rating.length > 0) {
+				return rating.map((item) => <div>{item.rating}</div>);
+			}
+		} else {
+			return 'N/A';
+		}
+	};
+
 	return (
 		<React.Fragment>
 			<Flippy
@@ -128,7 +165,7 @@ const Item = (props) => {
 							<Title>{details.Title}</Title>
 							<Scores>
 								<Score>{details.imdbRating}</Score>
-								<Score>{details.imdbRating}</Score>
+								<Score2>{setRatingData()}</Score2>
 							</Scores>
 							<Detail>{details.Runtime}</Detail>
 							<Detail>{details.Genre}</Detail>

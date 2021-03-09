@@ -18,6 +18,7 @@ const Movies = () => {
 		let config = {
 			headers: {
 				Authorization: 'Bearer ' + sessionStorage.getItem('token'),
+				'Access-Control-Allow-Origin': '*',
 			},
 		};
 		axios
