@@ -80,12 +80,16 @@ const Item = (props) => {
 
 	useEffect(() => {
 		axios
-			.get('http://www.omdbapi.com/?apikey=530b6ee1&i=' + props.imdbid)
-			.then((response) => {
-				setDetails(response.data);
+			.get('http://localhost:8000/api/movie/' + props.imdbid)
+			// .then((response) => JSON.parse(response.data))
+			.then((resp) => {
+				setDetails(resp.data);
 				grayScaled();
+				getRatings();
 			});
+	}, [props.imdbid, movies.alreadyWatched]);
 
+	const getRatings = () => {
 		axios
 			.get(
 				'http://127.0.0.1:8000/api/user-review?imdb_id=' + props.imdbid,
@@ -93,9 +97,8 @@ const Item = (props) => {
 			)
 			.then((response) => {
 				setRating(response.data.reviews);
-				console.log(response.data.reviews[0]);
 			});
-	}, [props.imdbid, movies.alreadyWatched]);
+	};
 
 	let config = {
 		headers: {
@@ -173,7 +176,11 @@ const Item = (props) => {
 							<Detail>Director: {details.Director}</Detail>
 							<Detail>Starring: {details.Actors}</Detail>
 							<Detail>
-								<AddMovie changeCard={changeCardFlip} movie={details} />
+								<AddMovie
+									addRating={getRatings}
+									changeCard={changeCardFlip}
+									movie={details}
+								/>
 							</Detail>
 						</CardDetails>
 					</MovieCard>
