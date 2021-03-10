@@ -41,6 +41,7 @@ const AddMovie = (props) => {
 			)
 			.then((response) => {
 				console.log(response);
+				props.addRating();
 			})
 			.catch(function (error) {
 				alert('error');
