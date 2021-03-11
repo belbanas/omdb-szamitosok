@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import styled from 'styled-components';
+import {useLocation} from 'react-router-dom';
 import Flippy, { FrontSide, BackSide } from 'react-flippy';
 import axios from 'axios';
 import AddMovie from './AddMovie';
@@ -78,6 +79,14 @@ const Item = (props) => {
 	const [grayscale, setGrayscale] = useState(false);
 	const [rating, setRating] = useState([]);
 
+	let location = useLocation();
+
+
+const getLocation = () =>{
+		const currentPath = location.pathname;
+		console.log(currentPath);
+}
+
 	useEffect(() => {
 		axios
 			.get('http://localhost:8000/api/movie/' + props.imdbid)
@@ -86,6 +95,8 @@ const Item = (props) => {
 				setDetails(resp.data);
 				grayScaled();
 				getRatings();
+				getLocation();
+				;
 			});
 	}, [props.imdbid, movies.alreadyWatched]);
 
@@ -96,6 +107,7 @@ const Item = (props) => {
 				config
 			)
 			.then((response) => {
+				console.log(rating);
 				setRating(response.data.reviews);
 			});
 	};
@@ -105,6 +117,12 @@ const Item = (props) => {
 			'Access-Control-Allow-Origin': '*',
 			Authorization: 'Bearer ' + sessionStorage.getItem('token'),
 		},
+	};
+
+	const HeaderView = () => {
+		const location = useLocation();
+		console.log(location.pathname);
+		return location.pathname;
 	};
 
 	const grayScaleStyle = () => {
@@ -177,6 +195,7 @@ const Item = (props) => {
 							<Detail>Starring: {details.Actors}</Detail>
 							<Detail>
 								<AddMovie
+									location={location.pathname}
 									addRating={getRatings}
 									changeCard={changeCardFlip}
 									movie={details}

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useLocation } from 'react';
 import { MovieContext } from './MovieContext';
 import styled from 'styled-components';
 import axios from 'axios';
@@ -92,12 +92,21 @@ const AddMovie = (props) => {
 			});
 	};
 
+const inWatchList = () => {
+	console.log(props.location);
+	if(props.location === '/watchlist'){
+		return '';
+	} else {
+		return (<Button type='submit' onClick={addMovie}>
+		Add to Watchlist
+	</Button>)
+	}
+}
+
 	if (sessionStorage.getItem('token')) {
 		return (
 			<React.Fragment>
-				<Button type='submit' onClick={addMovie}>
-					Add to Watchlist
-				</Button>
+				{inWatchList()}
 				<Button onClick={removeFromWatchlist}>Remove from watchlist</Button>
 
 				{/* <Button type="submit" onClick={addMovieTwo}>
